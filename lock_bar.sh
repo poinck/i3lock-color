@@ -7,7 +7,7 @@ T='#ee00eeee'  # text
 W='#880000bb'  # wrong
 V='#bb00bbbb'  # verifying
 
-./x86_64-pc-linux-gnu/i3lock \
+./x86_64-pc-linux-gnu/olock \
 --blur 5 \
 --bar-indicator \
 --bar-position h \

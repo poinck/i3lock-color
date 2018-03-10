@@ -14,7 +14,7 @@
 #include <xcb/xinerama.h>
 #include <xcb/randr.h>
 
-#include "i3lock.h"
+#include "olock.h"
 #include "xcb.h"
 #include "randr.h"
 

@@ -26,7 +26,7 @@
 #include <sys/time.h>
 
 #include "cursors.h"
-#include "i3lock.h"
+#include "olock.h"
 #include "xcb.h"
 #include "unlock_indicator.h"
 

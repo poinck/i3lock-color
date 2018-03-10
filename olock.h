@@ -1,5 +1,5 @@
-#ifndef _I3LOCK_H
-#define _I3LOCK_H
+#ifndef _OLOCK_H
+#define _OLOCK_H
 
 // boy i sure hope this doesnt change in the future
 #define NANOSECONDS_IN_SECOND 1000000000

@@ -1,21 +1,17 @@
-i3lock
+olock
 *.o
 tags
-*.swp
+*.sw*
 *.gz
+*~
 
-################################################################################
-# https://raw.githubusercontent.com/github/gitignore/master/Autotools.gitignore
-################################################################################
-
-# http://www.gnu.org/software/automake
-
+# automake
+Makefile
 Makefile.in
 /ar-lib
 /test-driver
 
-# http://www.gnu.org/software/autoconf
-
+# autoconf
 /autom4te.cache
 /autoscan.log
 /autoscan-*.log

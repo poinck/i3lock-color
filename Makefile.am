@@ -14,7 +14,7 @@ pamd_DATA = $(pamd_files)
 AM_CPPFLAGS = \
 	@AX_EXTEND_SRCDIR_CPPFLAGS@
 
-i3lock_CFLAGS = \
+olock_CFLAGS = \
 	$(AM_CFLAGS) \
 	$(XCB_CFLAGS) \
 	$(XCB_IMAGE_CFLAGS) \
@@ -25,11 +25,11 @@ i3lock_CFLAGS = \
 	$(JPEG_CFLAGS) \
 	$(CODE_COVERAGE_CFLAGS)
 
-i3lock_CPPFLAGS = \
+olock_CPPFLAGS = \
 	$(AM_CPPFLAGS) \
 	$(CODE_COVERAGE_CPPFLAGS)
 
-i3lock_LDADD = \
+olock_LDADD = \
 	$(XCB_LIBS) \
 	$(XCB_IMAGE_LIBS) \
 	$(XCB_UTIL_LIBS) \
@@ -39,7 +39,7 @@ i3lock_LDADD = \
 	$(FONTCONFIG_LIBS) \
 	$(CODE_COVERAGE_LDFLAGS)
 
-i3lock_SOURCES = \
+olock_SOURCES = \
 	cursors.h \
 	olock.c \
 	olock.h \

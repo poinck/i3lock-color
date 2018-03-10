@@ -2,7 +2,7 @@
 # Run autoreconf -fi to generate a configure script from this file.
 
 AC_PREREQ([2.69])
-AC_INIT([i3lock-color], [2.10], [https://github.com/chrjguill/i3lock-color/issues])
+AC_INIT([olock], [0.1], [https://github.com/poinck/olock/issues])
 # For AX_EXTEND_SRCDIR
 AX_ENABLE_BUILDDIR
 AM_INIT_AUTOMAKE([foreign subdir-objects -Wall no-dist-gzip dist-bzip2])
@@ -11,7 +11,7 @@ AM_SILENT_RULES([yes])
 # Make it possible to disable maintainer mode to disable re-generation of build
 # system files.
 AM_MAINTAINER_MODE([enable])
-AC_CONFIG_SRCDIR([i3lock.c])
+AC_CONFIG_SRCDIR([olock.c])
 AC_CONFIG_HEADERS([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -25,7 +25,7 @@ m4_pattern_forbid([AX_SANITIZERS])
 # Makefile.am, which are a GNU make extension. Pull requests to replace
 # '%'-style pattern rules with a more portable alternative are welcome.
 AX_CHECK_GNU_MAKE
-AS_VAR_IF([_cv_gnu_make_command], [""], [AC_MSG_ERROR([the i3lock Makefile.am requires GNU make])])
+AS_VAR_IF([_cv_gnu_make_command], [""], [AC_MSG_ERROR([the olock Makefile.am requires GNU make])])
 
 AX_EXTEND_SRCDIR
 
@@ -34,7 +34,7 @@ AS_IF([test -d ${srcdir}/.git],
         VERSION="$(git -C ${srcdir} describe --tags --abbrev=0)"
         I3LOCK_VERSION="$(git -C ${srcdir} describe --tags --always) ($(git -C ${srcdir} log --pretty=format:%cd --date=short -n1), branch \\\"$(git -C ${srcdir} describe --tags --always --all | sed s:heads/::)\\\")"
         # Mirrors what libi3/is_debug_build.c does:
-        is_release=$(test $(echo "${I3LOCK_VERSION}" | cut -d ' ' -f 1 | wc -m) -lt 13 && echo yes || echo no)
+        is_release=$(test $(echo "${OLOCK_VERSION}" | cut -d ' ' -f 1 | wc -m) -lt 13 && echo yes || echo no)
       ],
       [
         VERSION="$(cut -d '-' -f 1 ${srcdir}/I3LOCK_VERSION | cut -d ' ' -f 1)"
@@ -42,7 +42,7 @@ AS_IF([test -d ${srcdir}/.git],
         is_release="$(grep -q non-git ${srcdir}/I3LOCK_VERSION && echo no || echo yes)"
       ])
 AC_SUBST([I3LOCK_VERSION], [$I3LOCK_VERSION])
-AC_DEFINE_UNQUOTED([I3LOCK_VERSION], ["${I3LOCK_VERSION}"], [i3lock version])
+AC_DEFINE_UNQUOTED([I3LOCK_VERSION], ["${OLOCK_VERSION}"], [olock version])
 
 AX_CODE_COVERAGE
 
@@ -65,7 +65,7 @@ AC_CHECK_TYPES([mode_t, off_t, pid_t, size_t, ssize_t], , [AC_MSG_FAILURE([canno
 AC_FUNC_FORK
 AC_FUNC_LSTAT_FOLLOWS_SLASHED_SYMLINK
 AC_FUNC_STRNLEN
-AC_CHECK_FUNCS([atexit dup2 ftruncate getcwd gettimeofday localtime_r memchr memset mkdir rmdir setlocale socket strcasecmp strchr strdup strerror strncasecmp strndup strrchr strspn strstr strtol strtoul], , [AC_MSG_FAILURE([cannot find the $ac_func function, which i3lock requires])])
+AC_CHECK_FUNCS([atexit dup2 ftruncate getcwd gettimeofday localtime_r memchr memset mkdir rmdir setlocale socket strcasecmp strchr strdup strerror strncasecmp strndup strrchr strspn strstr strtol strtoul], , [AC_MSG_FAILURE([cannot find the $ac_func function, which olock requires])])
 
 # Checks for libraries.
 
@@ -76,7 +76,7 @@ AC_SEARCH_LIBS([ev_run], [ev], , [AC_MSG_FAILURE([cannot find the required ev_ru
 
 AC_SEARCH_LIBS([shm_open], [rt])
 
-# Only disable PAM on OpenBSD where i3lock uses BSD Auth instead
+# Only disable PAM on OpenBSD where olock uses BSD Auth instead
 case "$host" in
 	*-openbsd*)
 	# Nothing yet.
@@ -117,7 +117,7 @@ AX_CHECK_COMPILE_FLAG([-Wunused-value], [AX_APPEND_FLAG([-Wunused-value], [AM_CF
 AC_SUBST(AM_CFLAGS)
 
 # Checks for header files.
-AC_CHECK_HEADERS([fcntl.h float.h inttypes.h limits.h locale.h netinet/in.h paths.h stddef.h stdint.h stdlib.h string.h sys/param.h sys/socket.h sys/time.h unistd.h], , [AC_MSG_FAILURE([cannot find the $ac_header header, which i3lock requires])])
+AC_CHECK_HEADERS([fcntl.h float.h inttypes.h limits.h locale.h netinet/in.h paths.h stddef.h stdint.h stdlib.h string.h sys/param.h sys/socket.h sys/time.h unistd.h], , [AC_MSG_FAILURE([cannot find the $ac_header header, which olock requires])])
 
 AC_CONFIG_FILES([Makefile])
 
@@ -146,7 +146,7 @@ echo \
 "--------------------------------------------------------------------------------
 build configured:
 
-AS_HELP_STRING([i3lock version:], [`echo ${I3LOCK_VERSION} | sed 's,\\\\,,g'`])
+AS_HELP_STRING([olock version:], [`echo ${OLOCK_VERSION} | sed 's,\\\\,,g'`])
 AS_HELP_STRING([is release version:], [${is_release}])
 
 AS_HELP_STRING([enable debug flags:], [${ax_enable_debug}])
