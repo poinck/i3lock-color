@@ -32,17 +32,17 @@ AX_EXTEND_SRCDIR
 AS_IF([test -d ${srcdir}/.git],
       [
         VERSION="$(git -C ${srcdir} describe --tags --abbrev=0)"
-        I3LOCK_VERSION="$(git -C ${srcdir} describe --tags --always) ($(git -C ${srcdir} log --pretty=format:%cd --date=short -n1), branch \\\"$(git -C ${srcdir} describe --tags --always --all | sed s:heads/::)\\\")"
+        OLOCK_VERSION="$(git -C ${srcdir} describe --tags --always) ($(git -C ${srcdir} log --pretty=format:%cd --date=short -n1), branch \\\"$(git -C ${srcdir} describe --tags --always --all | sed s:heads/::)\\\")"
         # Mirrors what libi3/is_debug_build.c does:
         is_release=$(test $(echo "${OLOCK_VERSION}" | cut -d ' ' -f 1 | wc -m) -lt 13 && echo yes || echo no)
       ],
       [
-        VERSION="$(cut -d '-' -f 1 ${srcdir}/I3LOCK_VERSION | cut -d ' ' -f 1)"
-        I3LOCK_VERSION="$(sed -e 's/@<:@\"?\\@:>@/\\&/g' ${srcdir}/I3LOCK_VERSION)"
-        is_release="$(grep -q non-git ${srcdir}/I3LOCK_VERSION && echo no || echo yes)"
+        VERSION="$(cut -d '-' -f 1 ${srcdir}/OLOCK_VERSION | cut -d ' ' -f 1)"
+        OLOCK_VERSION="$(sed -e 's/@<:@\"?\\@:>@/\\&/g' ${srcdir}/OLOCK_VERSION)"
+        is_release="$(grep -q non-git ${srcdir}/OLOCK_VERSION && echo no || echo yes)"
       ])
-AC_SUBST([I3LOCK_VERSION], [$I3LOCK_VERSION])
-AC_DEFINE_UNQUOTED([I3LOCK_VERSION], ["${OLOCK_VERSION}"], [olock version])
+AC_SUBST([OLOCK_VERSION], [$OLOCK_VERSION])
+AC_DEFINE_UNQUOTED([OLOCK_VERSION], ["${OLOCK_VERSION}"], [olock version])
 
 AX_CODE_COVERAGE
 
