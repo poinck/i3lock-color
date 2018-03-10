@@ -8,7 +8,7 @@ bin_PROGRAMS = i3lock
 dist_man1_MANS = i3lock.1
 
 pamddir = $(sysconfdir)/pam.d
-pamd_files = pam/i3lock
+pamd_files = pam/olock
 pamd_DATA = $(pamd_files)
 
 AM_CPPFLAGS = \
