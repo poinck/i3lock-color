@@ -47,7 +47,7 @@
 #include <xcb/xcb_aux.h>
 #include <xcb/randr.h>
 
-#include "i3lock.h"
+#include "olock.h"
 #include "xcb.h"
 #include "cursors.h"
 #include "unlock_indicator.h"

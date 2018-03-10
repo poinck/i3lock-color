@@ -1,11 +1,11 @@
 @CODE_COVERAGE_RULES@
 
 echo-version:
-	@echo "@I3LOCK_VERSION@"
+	@echo "@OLOCK_VERSION@"
 
-bin_PROGRAMS = i3lock
+bin_PROGRAMS = olock
 
-dist_man1_MANS = i3lock.1
+dist_man1_MANS = olock.1
 
 pamddir = $(sysconfdir)/pam.d
 pamd_files = pam/olock
@@ -41,8 +41,8 @@ i3lock_LDADD = \
 
 i3lock_SOURCES = \
 	cursors.h \
-	i3lock.c \
-	i3lock.h \
+	olock.c \
+	olock.h \
 	randr.c \
 	randr.h \
 	unlock_indicator.c \
